@@ -1,5 +1,11 @@
+
+
 from .xkcd import XKCD
 
-async def setup(bot):  # Async setup for Redbot/discord.py 2.0
-    n = XKCD(bot)  # Pass the bot instance to the XKCD cog
-    await bot.add_cog(n)  # Use 'await' with add_cog for asynchronous behavior
+with open(Path(__file__).parent / "info.json") as fp:
+    __red_end_user_data_statement__ = json.load(fp)["end_user_data_statement"]
+
+
+async def setup(bot):
+    cog = XKCD(bot)
+    await bot.add_cog(cog)
